@@ -1,0 +1,78 @@
+# 只覆盖「开发或运行这个仓库时真的会掉出来的东西」，不照搬通用模板。
+#
+# 重要：release/IDM-Activation-Script.zip 与 .sha256 是对外交付物，必须保持被
+# 跟踪。所以这里刻意不写 *.zip / release 一类会误伤它们的规则；新增规则前请先
+# 跑 git check-ignore -v $(git ls-files) 确认没有命中已跟踪文件。
+
+# --- 脚本运行产物 ---
+# 开始激活.cmd 的「脚本目录可写」自检文件：正常路径会自删，用户中断时会残留。
+.__ias_write_test.tmp
+# IAS.cmd 日志：默认写到 %SystemRoot%\Temp，但 /log=PATH 可以指进仓库目录。
+IAS-*.log
+*.log
+
+# --- 编辑与备份临时文件 ---
+*.bak
+*.orig
+*.rej
+*.tmp
+*.swp
+*~
+
+# --- macOS（维护侧） ---
+.DS_Store
+._*
+.Spotlight-V100
+.Trashes
+
+# --- Windows（使用侧） ---
+Thumbs.db
+ehthumbs.db
+desktop.ini
+$RECYCLE.BIN/
+
+# --- 编辑器 / IDE ---
+.vscode/
+.idea/
+start-entry.cmd
+
+# ==== 凭证与产物安全网（统一追加，请勿删除）====
+# 目的：任何仓库里新出现的凭证文件默认不进版本库。
+# 注意：gitignore 只管「未跟踪」文件；已跟踪的文件不受影响。
+.env
+.env.*
+!.env.example
+!.env*.example
+!.env.sample
+*.pem
+*.key
+*.p12
+*.pfx
+*.keystore
+*.jks
+id_rsa
+id_dsa
+id_ecdsa
+id_ed25519
+*.ppk
+secrets.json
+secrets.yaml
+secrets.yml
+secrets.toml
+credentials.json
+credentials.yaml
+service-account*.json
+.netrc
+.pypirc
+*.session
+*.session-journal
+
+# ---- 系统与依赖产物 ----
+.DS_Store
+**/.DS_Store
+Thumbs.db
+node_modules/
+__pycache__/
+*.pyc
+.venv/
+venv/
