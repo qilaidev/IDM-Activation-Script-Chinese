@@ -1,0 +1,70 @@
+{
+  "@context": "https://doi.org/10.5063/schema/codemeta-2.0",
+  "@type": "SoftwareSourceCode",
+  "name": "IDM Activation Script Chinese (IDM 激活脚本中文版)",
+  "alternateName": [
+    "IDM-Activation-Script-Chinese",
+    "IDM 激活脚本中文版"
+  ],
+  "description": "Simplified-Chinese Windows Batch and PowerShell script toolkit for Internet Download Manager (IDM): freeze the 30-day trial period, activate via generated registration entries, reset trial/activation state, and toggle automatic update prompts with automatic CLSID registry backup.",
+  "version": "1.0.3",
+  "dateModified": "2026-11-13",
+  "license": "https://spdx.org/licenses/GPL-3.0-only",
+  "codeRepository": "https://github.com/qilaidev/IDM-Activation-Script-Chinese",
+  "issueTracker": "https://github.com/qilaidev/IDM-Activation-Script-Chinese/issues",
+  "downloadUrl": "https://github.com/qilaidev/IDM-Activation-Script-Chinese/raw/main/release/IDM-Activation-Script.zip",
+  "readme": "https://github.com/qilaidev/IDM-Activation-Script-Chinese/blob/main/README.md",
+  "operatingSystem": [
+    "Windows 7",
+    "Windows 8",
+    "Windows 8.1",
+    "Windows 10",
+    "Windows 11"
+  ],
+  "programmingLanguage": [
+    "Batchfile",
+    "PowerShell"
+  ],
+  "runtimePlatform": [
+    "Windows Command Prompt (cmd.exe)",
+    "PowerShell"
+  ],
+  "applicationCategory": "UtilitiesApplication",
+  "softwareRequirements": "Windows 7 or later with PowerShell and Administrator privileges",
+  "inLanguage": [
+    "zh-CN",
+    "en"
+  ],
+  "isBasedOn": "https://github.com/WindowsAddict/IDM-Activation-Script",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "qilaidev",
+      "url": "https://github.com/qilaidev"
+    }
+  ],
+  "maintainer": [
+    {
+      "@type": "Person",
+      "name": "qilaidev",
+      "url": "https://github.com/qilaidev"
+    }
+  ],
+  "keywords": [
+    "idm",
+    "internet-download-manager",
+    "idm-activation-script",
+    "windows",
+    "batch",
+    "cmd",
+    "powershell",
+    "trial-reset",
+    "freeze-trial",
+    "unattended",
+    "silent-install",
+    "chinese",
+    "clsid",
+    "open-source",
+    "windows-11"
+  ]
+}

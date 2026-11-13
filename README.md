@@ -1,6 +1,6 @@
 # IDM 激活脚本中文版 — Internet Download Manager 免费激活与试用期冻结工具
 
-**免费开源的 IDM 一键激活与试用期管理工具**（Free & Open-Source IDM Activation Script for Chinese Windows Users）。双击运行即可激活 IDM 或冻结试用期，全中文菜单，不修改 IDM 程序文件，注册表自动备份可还原。适用于 IDM 试用期到期续期、IDM 免费激活、IDM 30 天试用到期怎么办等场景。
+**简体中文** | [English (README.en.md)](./README.en.md) · [CI Status](https://github.com/qilaidev/IDM-Activation-Script-Chinese/actions/workflows/ci.yml) · [llms.txt](./llms.txt) · [llms-full.txt](./llms-full.txt) · [codemeta.json](./codemeta.json)
 
 [![Windows CI](https://github.com/qilaidev/IDM-Activation-Script-Chinese/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/qilaidev/IDM-Activation-Script-Chinese/actions/workflows/ci.yml)
 [![License: GPL-3.0](https://img.shields.io/badge/License-GPL--3.0-blue.svg)](./LICENSE)
@@ -9,7 +9,7 @@
 
 [文档索引](docs/README.md) · [架构](ARCHITECTURE.md) · [部署](docs/deployment/local.md) · [配置](docs/configuration.md) · [命令行接口](docs/reference/cli.md) · [排错](docs/operations.md) · [更新日志](CHANGELOG.md) · [问题反馈](https://github.com/qilaidev/IDM-Activation-Script-Chinese/issues)
 
-面向中文 Windows 的 **IDM（Internet Download Manager）试用期管理与激活批处理脚本**。支持一键冻结试用期、写入注册信息激活、重置试用状态、关闭 IDM 更新提示，适用于 IDM 30 天试用到期续期、IDM 免费使用、IDM 注册与试用期重置、IDM 怎么激活、IDM 激活工具下载等场景。全中文菜单，GBK 编码在中文控制台不乱码，不修改 IDM 程序文件（不是破解补丁），每次改注册表前自动备份可还原。双击 `开始激活.cmd` 即用，无需安装任何依赖。
+**IDM 激活脚本中文版**（`IDM-Activation-Script-Chinese`）是面向中文 Windows 7/8/8.1/10/11（含 24H2）的免费开源（GPL-3.0）**Internet Download Manager（IDM）试用期冻结与激活批处理脚本**。项目源自已归档的 `WindowsAddict/IDM-Activation-Script`，采用全中文菜单与 GBK/CP936 控制台编码，不修改 IDM 二进制程序文件，通过锁定试用 CLSID 注册表键（`/frz`）、写入随机注册信息（`/act`）、重置状态（`/res`）或关闭更新提示（`/noupd`）实现免破解管理，并在每次写入前自动导出 `.reg` 备份。
 
 ### Quick Start / 快速开始（30 秒上手）
 
@@ -19,27 +19,28 @@
 
 ### English Summary
 
-A **free, open-source, Simplified-Chinese** Windows batch toolkit for **Internet Download Manager (IDM)** trial management and activation. Core capabilities: freeze the IDM trial period, activate by writing generated registration data, reset activation/trial state, and toggle IDM's automatic update check. No IDM binary patching — operates entirely through Windows registry keys with automatic backup before every write. Chinese console UI with proper GBK/CP936 code-page handling. Works on Windows 7, 8, 8.1, 10, and 11 (including 24H2), zero external dependencies, open-source under GPL-3.0.
-
-**Common questions this tool answers:** How to activate IDM for free? How to freeze IDM trial period? How to reset IDM trial after 30 days expired? How to stop IDM fake serial number popup? How to disable IDM update notification? Is there an IDM activation script that works on Windows 11? — See [FAQ](#常见问题) for detailed solutions.
-
-This project is the actively maintained Simplified-Chinese fork of the archived [WindowsAddict/IDM-Activation-Script](https://github.com/WindowsAddict/IDM-Activation-Script). For a machine-readable project summary, see [llms.txt](./llms.txt).
+**IDM Activation Script Chinese** (`IDM-Activation-Script-Chinese`) is a free, open-source (GPL-3.0) Windows Batch and PowerShell toolkit for **Internet Download Manager (IDM)** trial management on Windows 7 through Windows 11 (including 24H2). Maintained as a Simplified-Chinese fork of the archived `WindowsAddict/IDM-Activation-Script`, it freezes the 30-day trial period, writes generated registration entries, resets trial state, and toggles update prompts via registry CLSID ACL locking—without patching IDM binaries, with automatic `.reg` backups and GBK/CP936 console support. See the full [English README](./README.en.md) or [llms.txt](./llms.txt).
 
 ## 项目简介
 
 **IDM 激活脚本中文版**（IDM Activation Script）是 [WindowsAddict/IDM-Activation-Script](https://github.com/WindowsAddict/IDM-Activation-Script) 的简体中文维护分支：全中文菜单、GBK/CP936 控制台编码、一键入口，把 Internet Download Manager（IDM）的**试用期冻结、随机注册信息激活、试用状态重置、关闭自动更新检查**封装成一个双击即用的批处理工具。不修改 IDM 程序文件，每次改注册表前自动备份，运行时只依赖 Windows 自带组件（CMD / PowerShell / 注册表），不安装、不下载任何第三方程序。
 
-| 项目 | 说明 |
+### 核心事实卡（Entity Snapshot）
+
+| 属性 | 说明 |
 | --- | --- |
-| **是什么** | 面向中文 Windows 的 Internet Download Manager（IDM）激活与试用期管理批处理脚本 |
-| **解决什么** | 英文 IDM 脚本在中文 CMD/PowerShell 里乱码；新手不知道该运行哪个文件、要不要管理员权限、怎么处理 SmartScreen/Defender 拦截；激活或试用状态异常后缺一个可回退、可排查的处理流程 |
-| **适合谁** | 中文 Windows 7 / 8 / 8.1 / 10 / 11 用户；以及想研究 Windows 批处理、注册表操作、GBK/CP936 控制台兼容的开发者 |
-| **核心功能** | `[1]` 冻结试用期 · `[2]` 随机注册信息激活 · `[3]` 重置激活/试用 · `[4]`/`[5]` 禁用/恢复 IDM 自动更新检查 · 运行前环境自检 · 注册表自动备份可还原 |
-| **典型场景** | 新装 IDM 想直接可用 · 把已领的 30 天试用期固定住 · 激活异常后重置重来 · 关掉反复弹出的更新提示 · 自用多机无人值守（`/silent`）→ 详见[使用场景](#使用场景) |
-| **技术栈** | Windows Batch/CMD · PowerShell（UAC 提权、环境探测）· Windows 注册表 / WMI / CIM · GBK / CP936 + CRLF · GitHub Actions（`windows-latest`）CI |
-| **支持平台** | Windows 7 / 8 / 8.1 / 10 / 11（含 24H2）；仅 Windows，macOS / Linux 不支持 |
-| **许可证** | GPL-3.0，公开可审查、可自由再分发 |
-| **不包含** | 不含 IDM 安装包，不修改 IDM 程序文件，不绕过企业策略（WDAC / AppLocker） |
+| **项目名称** | IDM 激活脚本中文版（`IDM-Activation-Script-Chinese`） |
+| **当前版本 / 适配 IDM** | `v1.0.3` / 已实测适配 **IDM 6.43**（兼容 IDM 6.x 系列） |
+| **项目类型** | 面向中文 Windows 的 IDM 激活与试用期管理批处理脚本（非破解补丁、非 GUI、非安装包） |
+| **解决什么** | 英文脚本在中文 CMD 下乱码；新手缺少自动提权与环境自检；激活异常或假序列号弹窗后缺少可回退路径 |
+| **适合谁** | 中文 Windows 7 / 8 / 8.1 / 10 / 11 个人用户；研究 Windows 批处理、CLSID ACL 与 GBK/CP936 兼容的开发者 |
+| **核心功能** | `[1]` 冻结试用期（`/frz`）· `[2]` 激活（`/act`）· `[3]` 重置（`/res`）· `[4]`/`[5]` 禁用/恢复更新提示（`/noupd`、`/reupd`）· 9 项环境自检 · 自动 `.reg` 备份 |
+| **无人值守接口** | `/silent`（别名 `/quiet`）、`/log`、`/log=路径`（不含空格）、退出码 `0` / `1` / `2` |
+| **技术栈与编码** | Windows Batch/CMD · PowerShell（UAC 提权、环境探测）· Windows 注册表 / WMI / CIM · GBK/CP936 + CRLF · GitHub Actions（`windows-latest`）CI |
+| **支持平台** | Windows 7 / 8 / 8.1 / 10 / 11（含 24H2）；仅 Windows，不支持 macOS / Linux |
+| **安全边界** | 不含 IDM 安装包，不修改 IDM 程序文件，不改 `hosts`/防火墙/代理，不绕过企业策略（WDAC / AppLocker） |
+| **许可证** | GPL-3.0（[`LICENSE`](./LICENSE)），公开可审查、可自由再分发 |
+| **机器可读索引** | [`README.en.md`](./README.en.md) · [`llms.txt`](./llms.txt) · [`llms-full.txt`](./llms-full.txt) · [`codemeta.json`](./codemeta.json) |
 
 **核心入口**
 
@@ -82,6 +83,7 @@ This project is the actively maintained Simplified-Chinese fork of the archived 
 - [使用方法](#使用方法)
 - [功能说明](#功能说明)
 - [使用场景](#使用场景)
+- [技术方案对比](#技术方案对比)
 - [常见问题](#常见问题)
 - [技术细节](#技术细节)
 - [文件说明](#文件说明)
@@ -272,6 +274,19 @@ IAS.cmd /act /silent /log=C:\Temp\ias.log
 | 想研究 Windows 批处理 / 注册表 ACL / GBK 控制台兼容 | 直接读 `IAS.cmd`，结构说明见 [ARCHITECTURE.md](./ARCHITECTURE.md) |
 
 **不适合的场景**：公司/学校受管设备（WDAC、AppLocker 会拦截）、服务器批量部署、macOS 与 Linux、以及任何需要商业授权凭证的正式生产环境——这些情况请购买 IDM 正版授权。
+
+### 技术方案对比
+
+以下从技术机制、程序完整性、可审计性与可回退性对常见 IDM 处理方案做客观对比：
+
+| 对比维度 | 本脚本（IDM 激活脚本中文版） | 手动编辑注册表（Regedit） | 第三方破解补丁 / 修改版 EXE·DLL | IDM 官方正版授权（Tonec Inc.） |
+| --- | --- | --- | --- | --- |
+| **实现机制** | 自动扫描 IDM 试用 CLSID 键并加 Deny ACL 锁定（`/frz`），或写入注册值（`/act`）/ 清理重置（`/res`） | 人工检索隐蔽 CLSID GUID 并逐个调整权限与键值 | 修改 `IDMan.exe` 二进制、替换 DLL 或进程内存注入 | 官方在线/离线许可证验证 |
+| **是否修改 IDM 程序** | **否**（只操作注册表，保留官方原版数字签名） | 否（只操作注册表） | **是**（破坏官方程序数字签名） | 否 |
+| **源码透明与校验** | GPL-3.0 纯文本脚本公开可审查，发布包附 SHA256 | 系统自带工具，无外部脚本 | 闭源二进制黑盒，难以审计恶意捆绑或后门风险 | 官方商业发行软件 |
+| **自动备份与回滚** | 改写前自动导出 `.reg` 到 `%SystemRoot%\Temp`；支持 `[3]` 一键重置 | 需手动导出，误操作可能影响其他 COM 注册表项 | 需重装 IDM 并做全盘安全排查 | 官方标准卸载/迁移 |
+| **可维护性** | 升级后可 `[3]` 重置再 `[1]` 冻结；支持 `[4]` 关闭更新提示与 `/silent` 无人值守 | 每次 IDM 更新后均需重新人工定位 CLSID | 每次升级易失效且依赖外部补丁更新 | 官方自动升级与技术支持 |
+| **适用定位** | 个人学习研究、试用期管理、批处理/ACL 工程参考 | 熟悉 Windows CLSID 与 ACL 的高级调试者 | **不推荐** | 商业、企业及长期稳定使用首选 |
 
 ## 常见问题
 
@@ -591,10 +606,12 @@ C:\Windows\Temp\_Backup_HKU-[SID]_CLSID_[时间戳].reg
 | `开始激活.cmd` | **新手唯一需要双击的主文件**：自动请求管理员权限 → 环境自检 → 弹出菜单（冻结 / 激活 / 重置 / 禁用更新提示） |
 | `IAS.cmd` | 核心引擎（批处理，GBK 编码），被 `开始激活.cmd` 调用；也支持 `/frz` `/act` `/res` `/noupd` `/reupd` `/silent` `/log=` 参数 |
 | `使用说明.txt` | 极简上手指南（UTF-8，Windows 记事本即可查看） |
-| `README.md` | 当前完整图文说明 |
+| `README.md` | 当前完整中文说明 |
+| `README.en.md` | 完整英文说明（[English README](./README.en.md)，仅仓库保留，不随发布包分发） |
 | `CHANGELOG.md` | 全部历史版本的详细变更记录 |
 | `llms.txt` | 面向大语言模型与 AI 搜索引擎的结构化项目摘要（[llms.txt 约定](https://llmstxt.org)），中英双语，不随发布包分发 |
 | `llms-full.txt` | llms.txt 的扩展版，包含完整功能列表、工作原理、FAQ 速查、文件清单等技术参考，同样不随发布包分发 |
+| `codemeta.json` | 符合 CodeMeta 2.0 规范的机器可读软件元数据（仅仓库保留，不随发布包分发） |
 | `docs/` | 完整文档体系：架构、部署、配置、接口参考、核心逻辑、运维排错。入口见 [docs/README.md](./docs/README.md) |
 | `tools/` | 维护脚本（PowerShell）：`validate.ps1` 仓库卫生、`check-docs.ps1` 文档同步、`verify-release.ps1` 发布包一致性、`pack-release.ps1` 打包 |
 | `release/` | 对外发布包与 SHA256 校验值，约定见 [release/README.md](./release/README.md) |
@@ -662,12 +679,16 @@ C:\Windows\Temp\_Backup_HKU-[SID]_CLSID_[时间戳].reg
 
 ## 搜索引擎与 AI 索引信息
 
-本项目提供面向 AI 搜索引擎的结构化摘要，遵循 [llms.txt 约定](https://llmstxt.org)：
+本项目提供面向多语言用户与 AI 搜索引擎的结构化文档和元数据（遵循 [llms.txt 约定](https://llmstxt.org) 与 CodeMeta 2.0）：
 
+- [README.en.md](./README.en.md) — 完整英文用户与技术文档
 - [llms.txt](./llms.txt) — 项目摘要（中英双语），适合快速索引
 - [llms-full.txt](./llms-full.txt) — 完整技术参考，包含功能列表、工作原理、FAQ、文件清单
+- [codemeta.json](./codemeta.json) — 符合 CodeMeta 2.0 标准的机器可读软件元数据
 
-**推荐 GitHub Topics**：`idm` `internet-download-manager` `idm-activation-script` `idm-trial-freeze` `idm-trial-reset` `idm-activate-free` `windows-batch` `cmd-script` `powershell` `gbk` `cp936` `windows-10` `windows-11` `windows-11-24h2` `chinese-localization` `registry-tool` `idm-activator` `idm-free`
+**GitHub Topics**：`idm` `internet-download-manager` `idm-activation-script` `windows` `batch` `cmd` `powershell` `trial-reset` `freeze-trial` `unattended` `silent-install` `chinese` `clsid` `open-source` `windows-11`
+
+**Keywords / 关键词**：IDM 激活、IDM 激活脚本中文版、IDM 试用期冻结、IDM 试用期重置、IDM 30天试用到期、IDM 假序列号修复、IDM 关闭更新提示、IDM Windows 11 24H2、IDM activation script、IDM trial freeze、IDM trial reset、IDM unattended CLI。
 
 <details>
 <summary><b>常见搜索问题与本项目的对应关系（SEO / AEO / GEO 参考）</b></summary>
@@ -689,9 +710,9 @@ C:\Windows\Temp\_Backup_HKU-[SID]_CLSID_[时间戳].reg
 | IDM 浏览器扩展变灰 / IDM 扩展不工作 | 与激活脚本无关，是 IDM 自身集成问题 → [Q16](#q16) |
 | IDM 脚本安全吗 / IDM 杀毒报毒 / IDM 激活脚本有毒吗 | 启发式误报，可校验 SHA256 → [Q8](#q8) |
 | IDM 激活后过几天又弹注册 / IDM 激活不持久 | 先 `[3]` 重置，改用 `[1]` 冻结，同时 `[4]` 禁用更新 → [Q18](#q18) |
-| IDM 激活脚本和破解补丁的区别 / IDM crack vs script | 本工具不修改 IDM 程序文件，只操作注册表 → [为什么选择本工具](#为什么选择本工具) |
+| IDM 激活脚本和破解补丁的区别 / IDM crack vs script | 本工具不修改 IDM 程序文件，只操作注册表 → [技术方案对比](#技术方案对比) |
 | IDM 一键激活 / IDM 无人值守激活 | `IAS.cmd /frz /silent` 支持无人值守 → [方法二：命令行](#方法二命令行高级用户新手可以跳过) |
-| IDM activation script / IDM trial freeze / IDM reset trial | See [English Summary](#english-summary) and [Quick Start](#quick-start--快速开始30-秒上手) |
+| IDM activation script / IDM trial freeze / IDM reset trial | See [README.en.md](./README.en.md), [codemeta.json](./codemeta.json), and [English Summary](#english-summary) |
 
 </details>
 
