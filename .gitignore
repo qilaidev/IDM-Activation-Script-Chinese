@@ -64,8 +64,8 @@ credentials.yaml
 service-account*.json
 .netrc
 .pypirc
-*.session
-*.session-journal
+*.session*
+tdata/
 
 # ---- 系统与依赖产物 ----
 .DS_Store
